@@ -65,7 +65,14 @@ var server = http.createServer(function(req, res) {
       ws: true
     });
   }
+});
 
+// 
+// Listen to the `upgrade` event and proxy the
+// WebSocket requests as well.
+//
+server.on('upgrade', function (req, socket, head) {
+  proxy.ws(req, socket, head);
 });
  
 const PORT = process.env.PORT || 8080
