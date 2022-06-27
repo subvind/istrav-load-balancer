@@ -29,10 +29,10 @@ $ sudo ufw allow 8080/tcp
 $ sudo ufw reload
 
 # start
-$ PORT=8080 pm2 start dist/main.js -i -1 --update-env --name="istrav-load-balanacer"
+$ PORT=8080 pm2 start index.js -i -1 --update-env --name="istrav-load-balanacer"
 
 # stop
-$ pm2 stop dist/main.js --name="istrav-load-balanacer"
+$ pm2 stop index.js --name="istrav-load-balanacer"
 
 # logs
 $ pm2 logs istrav-load-balanacer
