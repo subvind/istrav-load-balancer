@@ -72,7 +72,9 @@ var server = http.createServer(function(req, res) {
 // WebSocket requests as well.
 //
 server.on('upgrade', function (req, socket, head) {
-  proxy.ws(req, socket, head);
+  proxy.ws(req, socket, head, {
+    target: `ws://${istravCommandsIp}:8888`
+  });
 });
  
 const PORT = process.env.PORT || 8080
