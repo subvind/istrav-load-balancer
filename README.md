@@ -19,7 +19,7 @@ Here are the VMs running in Proxmox:
 Cloudflare DNS tables:
 - A * 136.39.108.42 proxied
 - A istrav.dev 136.39.108.42 proxied
-> note: that is not my ip
+> note: that ip is just for example
 
 
 ## Production
@@ -51,4 +51,7 @@ $ pm2 save
 
 # Remove Startup Script
 $ pm2 unstartup
+
+# after code change
+$ pm2 reload all
 ```
