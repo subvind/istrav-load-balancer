@@ -2,7 +2,7 @@ var http = require('http')
 var httpProxy = require('http-proxy');
 
 let istravCommandsIp = '192.168.10.221'
-let istravPlatformsIp = '192.168.10.29721'
+let istravPlatformsIp = '192.168.10.97'
  
 //
 // Port numbers range from 0 to 65535, but only port 
