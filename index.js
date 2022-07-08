@@ -57,7 +57,9 @@ var server = http.createServer(function(req, res) {
   if (hostNames.length === 3) {
     // this is a request for a platform
     let port = platformNameToPortNumber(hostNames[0])
-    proxy.web(req, res, { target: `http://${istravPlatformsIp}:${port}` });
+    let target = `http://${istravPlatformsIp}:${port}`
+    console.log('target', target)
+    proxy.web(req, res, { target: target });
   } else {
     // this is a request for commands
     proxy.web(req, res, { 
