@@ -54,11 +54,13 @@ var server = http.createServer(function(req, res) {
   if (hostNames.length === 3) {
     // this is a request for a platform
     let port = platformNameToPortNumber(hostNames[0])
-    proxy.web(req, res, { target: `http://istrav-platforms:${port}` });
+    // istrav-platforms = 192.168.10.97
+    proxy.web(req, res, { target: `http://192.168.10.97:${port}` });
   } else {
     // this is a request for commands
     proxy.web(req, res, { 
-      target: 'http://istrav-commands:8888',
+      // istrav-commands = 192.168.10.221
+      target: 'http://192.168.10.221:8888',
       ws: true
     });
   }
