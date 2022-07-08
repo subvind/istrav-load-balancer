@@ -1,5 +1,8 @@
 var http = require('http')
 var httpProxy = require('http-proxy');
+
+let istravCommandsIp = '192.168.10.221'
+let istravPlatformsIp = '192.168.10.97'
  
 //
 // Port numbers range from 0 to 65535, but only port 
@@ -47,24 +50,31 @@ var server = http.createServer(function(req, res) {
 
   // configuration
   let host = req.headers.host
-  console.log('host', )
+  console.log('host', host)
 
   // proxy to Commands or a Platform
   let hostNames = host.split('.')
   if (hostNames.length === 3) {
     // this is a request for a platform
     let port = platformNameToPortNumber(hostNames[0])
-    // istrav-platforms = 192.168.10.97
-    proxy.web(req, res, { target: `http://192.168.10.97:${port}` });
+    proxy.web(req, res, { target: `http://${istravPlatformsIp}:${port}` });
   } else {
     // this is a request for commands
     proxy.web(req, res, { 
-      // istrav-commands = 192.168.10.221
-      target: 'http://192.168.10.221:8888',
+      target: `http://${istravCommandsIp}:8888`,
       ws: true
     });
   }
+});
 
+// 
+// Listen to the `upgrade` event and proxy the
+// WebSocket requests as well.
+//
+server.on('upgrade', function (req, socket, head) {
+  proxy.ws(req, socket, head, {
+    target: `ws://${istravCommandsIp}:8888`
+  });
 });
  
 const PORT = process.env.PORT || 8080
