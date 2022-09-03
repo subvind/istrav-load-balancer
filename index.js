@@ -3,6 +3,7 @@ var httpProxy = require('http-proxy');
 
 let istravCommandsIp = '192.168.10.221'
 let istravPlatformsIp = '192.168.10.97'
+let istravCouchIp = '192.168.10.115'
  
 //
 // Port numbers range from 0 to 65535, but only port 
@@ -54,7 +55,12 @@ var server = http.createServer(function(req, res) {
 
   // proxy to Commands or a Platform
   let hostNames = host.split('.')
-  if (hostNames.length === 3) {
+  if (host === 'couchdb.istrav.dev') {
+    // this is a request for couchdb
+    proxy.web(req, res, { 
+      target: `http://${istravCouchIp}:5984`,
+    });
+  } else if (hostNames.length === 3) {
     // this is a request for a platform
     let port = platformNameToPortNumber(hostNames[0])
     let target = `http://${istravPlatformsIp}:${port}`
