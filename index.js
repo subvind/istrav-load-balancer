@@ -58,7 +58,7 @@ var server = http.createServer(function(req, res) {
   if (host === 'couchdb.istrav.dev') {
     // this is a request for couchdb
     proxy.web(req, res, { 
-      target: `http://${istravCouchIp}:5984`,
+      target: `http://${istravCouchIp}:59`,
     });
   } else if (hostNames.length === 3) {
     // this is a request for a platform
