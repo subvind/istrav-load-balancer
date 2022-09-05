@@ -60,6 +60,12 @@ var server = http.createServer(function(req, res) {
     proxy.web(req, res, { 
       target: `http://${istravCouchIp}:59`,
     });
+  } else if (host === 'pro.istrav.dev') {
+    // this is a request for pro server
+    proxy.web(req, res, { 
+      target: `http://${istravPlatformsIp}:1337`,
+      ws: true
+    });
   } else if (hostNames.length === 3) {
     // this is a request for a platform
     let port = platformNameToPortNumber(hostNames[0])
@@ -81,9 +87,18 @@ var server = http.createServer(function(req, res) {
 // WebSocket requests as well.
 //
 server.on('upgrade', function (req, socket, head) {
-  proxy.ws(req, socket, head, {
-    target: `ws://${istravCommandsIp}:8888`
-  });
+  let host = req.headers.host
+  if (host === 'pro.istrav.dev') {
+    // this is a request for pro server
+    proxy.ws(req, socket, head, {
+      target: `ws://${istravPlatformsIp}:1337`
+    });
+  } else {
+    // this is a request for commands
+    proxy.ws(req, socket, head, {
+      target: `ws://${istravCommandsIp}:8888`
+    });
+  }
 });
  
 const PORT = process.env.PORT || 8080
