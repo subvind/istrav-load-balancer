@@ -1,6 +1,23 @@
-istrav-load-balanacer
+istrav-load-balancer
 ========
+Innovation Management Software (IMS)
 
+istrav source code:
+- istrav.com: https://github.com/trabur/istrav.com
+- trabur.workers.dev: https://github.com/trabur/istrav-global
+- istrav.net: https://github.com/trabur/istrav-platform-frontgate
+- meta.istrav.net: https://github.com/trabur/istrav-platform-frontend
+- istrav.istrav.dev: https://github.com/trabur/istrav-platform-backend
+- istrav-load-balancer: https://github.com/trabur/istrav-load-balancer
+- istrav.dev: https://github.com/trabur/istrav.dev
+- istrav-headquarters: https://github.com/trabur/istrav-headquarters
+- istrav.stream: https://github.com/trabur/istrav.stream
+
+istrav-load-balancer tech:
+- http-proxy
+- node.js
+
+## About
 The router from google fiber has port forwarding setup so that
 all traffic in and out of homebase is over port 80 (router) 
 and port 8080 (bridgeputer). 
@@ -15,6 +32,8 @@ Here are the VMs running in Proxmox:
 - istrav-database
 - istrav-buckets
 - istrav-platforms
+- istrav-osrm
+- istrav-couchdb
 
 Cloudflare DNS tables:
 - A * 136.39.108.42 proxied
