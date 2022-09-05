@@ -48,16 +48,16 @@ $ sudo ufw allow 8080/tcp
 $ sudo ufw reload
 
 # start
-$ PORT=8080 pm2 start index.js -i -1 --update-env --name="istrav-load-balanacer"
+$ PORT=8080 pm2 start index.js -i -1 --update-env --name="istrav-load-balancer"
 
 # stop
-$ pm2 stop index.js --name="istrav-load-balanacer"
+$ pm2 stop index.js --name="istrav-load-balancer"
 
 # logs
-$ pm2 logs istrav-load-balanacer
+$ pm2 logs istrav-load-balancer
 
 # delete
-$ pm2 delete istrav-load-balanacer
+$ pm2 delete istrav-load-balancer
 
 # list
 $ pm2 status
